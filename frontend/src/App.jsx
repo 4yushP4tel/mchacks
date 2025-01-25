@@ -7,17 +7,19 @@ import { Signin } from "./pages/signin.jsx";
 import {ClinicSignIn} from "./components/clinicSignIn.jsx"
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import "./style.css";
+import Admitted from "./pages/Admitted.jsx";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Homepage/>}></Route>
-        <Route path="/signup" element={<Signup/>}></Route>
-        <Route path="/signin" element={<Signin/>}></Route>
-        <Route path="/clinic_access" element={<ClinicSignIn/>}></Route>
-      </Routes>
-    </Router>
+    <Admitted/>
+    // <Router>
+    //   <Routes>
+    //     <Route path="/" element={<Homepage/>}></Route>
+    //     <Route path="/signup" element={<Signup/>}></Route>
+    //     <Route path="/signin" element={<Signin/>}></Route>
+    //     <Route path="/clinic_access" element={<ClinicSignIn/>}></Route>
+    //   </Routes>
+    // </Router>
   );
 }
 
