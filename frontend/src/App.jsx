@@ -1,19 +1,12 @@
 import React from "react";
-import "./index.css";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
+import "./style.css";
 
 function App() {
   return (
     <div className="app-container">
-      <header className="header">
-        <div className="logo">CliniQ</div>
-        <nav className="navbar">
-          <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
       <main className="main-content">
         <section className="hero">
@@ -41,13 +34,7 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} CliniQ. All rights reserved.</p>
-        <nav className="footer-nav">
-          <a href="#privacy-policy">Privacy Policy</a>
-          <a href="#terms-of-service">Terms of Service</a>
-        </nav>
-      </footer>
+      <Footer />
     </div>
   );
 }
