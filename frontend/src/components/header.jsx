@@ -9,9 +9,11 @@ function Header() {
             <ul className="navbar">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About Us</a></li>
+                <li>
                 <Link to={"/clinic_access"}>
-                   <li>Access as clinic</li>
+                   <a>Access as clinic</a>
                 </Link>
+                </li>
             </ul>     
         </div>
     )
