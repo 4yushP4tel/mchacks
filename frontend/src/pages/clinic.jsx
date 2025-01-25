@@ -1,4 +1,4 @@
-export function Signin( {setStatus} ){
+export function Clinic(){
     return(
         <div>
             

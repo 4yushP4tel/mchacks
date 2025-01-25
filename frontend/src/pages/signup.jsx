@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './signup.css';
 
-export default function Signup() {
+export default function Signup( {setStatus} ) {
     
     const [formData, setFormData] = useState({
         fullName: '',
