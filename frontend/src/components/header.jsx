@@ -10,10 +10,8 @@ function Header() {
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About Us</a></li>
                 <Link to={"/clinic_access"}>
-                    <li>Access as clinic</li>
+                   <li>Access as clinic</li>
                 </Link>
-
-               
             </ul>     
         </div>
     )
