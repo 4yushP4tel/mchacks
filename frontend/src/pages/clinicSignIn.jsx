@@ -16,4 +16,3 @@ export function ClinicSignIn() {
     )
 }
 
-export default ClinicSignIn;
