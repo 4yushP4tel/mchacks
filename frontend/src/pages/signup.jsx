@@ -9,7 +9,7 @@ export default function Signup( {setStatus} ) {
         fullName: '',
         email: '',
         password: '',
-        age: '',
+        age: ''
     });
 
     
@@ -27,7 +27,7 @@ export default function Signup( {setStatus} ) {
 
     return (
         <>
-            <Header/>
+            <Header />
             <div class="container">
                 <form onSubmit={signup}>
                     <div className="FullName">Enter your full name.</div>
@@ -74,7 +74,7 @@ export default function Signup( {setStatus} ) {
                 </form>
                 
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 }
