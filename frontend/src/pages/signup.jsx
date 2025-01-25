@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function SignupApp() {
+export default function Signup() {
     
     const [formData, setFormData] = useState({
         fullName: '',
