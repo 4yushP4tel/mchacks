@@ -62,6 +62,11 @@ class Active_patients(db.Model):
     email = db.Column(db.String(255), unique = True, nullable = False)
     created_at = db.Column(db.DateTime, default = datetime.now)
 
+@app.route('/check_auth', methods = ["GET"])
+def check_auth():
+    if 'user_id' in session:
+        pass
+
 
 @app.route('/create_patient', methods = ["POST"])
 def create_patient():
@@ -83,8 +88,10 @@ def create_patient():
         db.session.add(patient)
         db.session.commit()
 
+        session['patient_id'] = patient.id
         return jsonify({
-            "message": "patient_created"
+            "message": "patient_created",
+            "id" : patient.id
         })
 
 
