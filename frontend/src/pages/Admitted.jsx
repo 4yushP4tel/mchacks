@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Admitted() {
+export function Admitted() {
   const initialState = [{ id: 1, symptom: "", level: "Mild" }];
   const [symptoms, setSymptoms] = useState(initialState);
 
@@ -67,5 +67,3 @@ function Admitted() {
     </div>
   );
 }
-
-export default Admitted;

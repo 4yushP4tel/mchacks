@@ -3,7 +3,7 @@ import Header from "../components/header.jsx";
 import Footer from "../components/footer.jsx";
 import './signup.css';
 
-export default function Signup() {
+export default function Signup( {setStatus} ) {
     
     const [formData, setFormData] = useState({
         fullName: '',
