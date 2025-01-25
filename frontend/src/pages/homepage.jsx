@@ -5,6 +5,7 @@ import Footer from "../components/footer.jsx";
 import "../style.css";
 
 function Homepage() {
+
     return (
         <div className="app-container">
             <Header />
