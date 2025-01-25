@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../style.css";
 
 function HomeBody() {
@@ -7,7 +8,10 @@ function HomeBody() {
         <section className="hero">
             <h1>Welcome to CliniQ</h1>
             <p>Your health, our priority. Consult with top doctors from the comfort of your home.</p>
-            <button className="cta-button">Start Today</button>
+            <Link to={"/signup"}>
+                <button className="cta-button">Start Today</button>
+            </Link>
+
         </section>
 
         <section id="services" className="services">

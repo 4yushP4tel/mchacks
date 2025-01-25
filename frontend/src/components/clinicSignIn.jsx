@@ -1,7 +1,7 @@
 import React from "react";
 import "../style.css";
 
-function ClinicSignIn() {
+export function ClinicSignIn() {
     return (
         <div className="popup">
             
