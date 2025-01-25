@@ -4,7 +4,7 @@ import Homepage from "./pages/homepage.jsx";
 import Footer from "./components/footer.jsx";
 import Signup from "./pages/signup.jsx";
 import { Signin } from "./pages/signin.jsx";
-import {ClinicSignIn} from "./components/clinicSignIn.jsx"
+import {ClinicSignIn} from "./pages/clinicSignIn.jsx"
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import "./style.css";
 
