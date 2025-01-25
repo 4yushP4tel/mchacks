@@ -9,7 +9,11 @@ from datetime import datetime
 app = Flask(__name__)
 load_dotenv()
 
+
+
 KEY = os.getenv('Key')
+openai_key = os.getenv('openai_key')
+ACCESS_KEY = os.getenv('CLINIC_ACCESS_KEY')
 
 app.config['SESSION_TYPE'] = 'filesystem' 
 app.config['SESSION_FILE_DIR'] = '/tmp/flask_session'
@@ -27,6 +31,17 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Session(app)
+
+client = OpenAI(api_key= openai_key)
+content = "rank all the patients in order of importance to treat without stating why, just give them in order"
+
+def get_openai_response(prompt):
+    completion = client.chat.completions.create(
+        model= "gpt-4o",
+        messages= [{"role": "system", "content": content }],
+        temperature = 0.05
+    )
+    return completion.choices[0].message.content
 
 class Patient(db.Model):
     __tablename__ = "patients"
@@ -78,6 +93,45 @@ def create_patient():
         return jsonify({
             "message": f"error when creating patient, {e}"
         })
+    
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
+    user = Patient.query.filter_by(email=email).first()
+    if user and user.check_password(password):
+        #setting a session
+        session['auth_status'] = True
+        session['user_id'] = user.user_id
+        session['user_name'] = user.user_name
+        session['email'] = user.email
+        session.permanent = True
+        print(f"session data: {session}")
+        return jsonify({"message": "Logged in successfully",
+                        "user_id": session['user_id'],
+                        "user_name": session['user_name'],
+                        "auth_status": session['auth_status']
+                        }), 200
+    else:
+        return jsonify({"error": "Invalid email or password"}), 401
+    
+@app.route("/clinic_access", methods=["POST"])
+def clinic_access():
+    data = request.get_json()
+    entered_key = data.get("entered_key")
+
+    if entered_key == ACCESS_KEY:
+        return jsonify({
+            "access_grant" : True
+        }), 200
+    
+    else:
+        return jsonify({
+            "access_grant" : False
+        }), 401
+    
 
 
 
