@@ -4,7 +4,8 @@ import "../style.css";
 function ClinicSignIn() {
     return (
         <div className="popup">
-            
+            <div className="request">Enter acces key:</div>
+            <input type="text" className="clinicAccess" />
         </div>
     )
 }
