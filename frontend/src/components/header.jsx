@@ -8,7 +8,7 @@ function Header() {
             <ul className="navbar">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#clinic-access">Access as clinic</a></li>
+                <li><a href="../pages/clinicSignIn.jsx">Access as clinic</a></li>
             </ul>     
         </div>
     )
