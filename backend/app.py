@@ -22,6 +22,7 @@ app.config['SESSION_USE_SIGNER'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_Name'] = 'session'
 app.config['SESSION_COOKIE_SECURE'] = True
+app.secret_key = KEY
 
 db_host = os.getenv('dbhost')
 db_user = os.getenv('dbuser')
@@ -53,6 +54,7 @@ class Patient(db.Model):
     created_at = db.Column(db.DateTime, default = datetime.now)
 
 
+
 class Active_patients(db.Model):
     __tablename__ = "active_patients"
     id = db.Column(db.Integer, primary_key=True)
@@ -65,7 +67,15 @@ class Active_patients(db.Model):
 @app.route('/check_auth', methods = ["GET"])
 def check_auth():
     if 'user_id' in session:
-        pass
+        return jsonify({
+            "authorization": True
+        })
+
+    else:
+        return jsonify({
+            "authorization": False
+        })
+
 
 
 @app.route('/create_patient', methods = ["POST"])
@@ -87,11 +97,11 @@ def create_patient():
     try:
         db.session.add(patient)
         db.session.commit()
+        session['auth_status'] = True
 
-        session['patient_id'] = patient.id
         return jsonify({
             "message": "patient_created",
-            "id" : patient.id
+            "auth_status" : session["auth_status"]
         })
 
 
@@ -107,18 +117,13 @@ def login():
     email = data.get('email')
     password = data.get('password')
 
-    user = Patient.query.filter_by(email=email).first()
-    if user and user.check_password(password):
-        #setting a session
+    patient = Patient.query.filter_by(email=email).first()
+    if patient and password == patient.password:
+        session['patient_id'] = patient.id
         session['auth_status'] = True
-        session['user_id'] = user.user_id
-        session['user_name'] = user.user_name
-        session['email'] = user.email
-        session.permanent = True
         print(f"session data: {session}")
         return jsonify({"message": "Logged in successfully",
-                        "user_id": session['user_id'],
-                        "user_name": session['user_name'],
+                        "user_id": session['patient_id'],
                         "auth_status": session['auth_status']
                         }), 200
     else:
