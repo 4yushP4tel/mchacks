@@ -55,6 +55,7 @@
 
   .navbar li {
     min-width: auto;
+    list-style-type: none;
   }
 
   .navbar a {
