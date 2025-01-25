@@ -12,14 +12,14 @@ function App() {
         <section className="hero">
           <h1>Welcome to CliniQ</h1>
           <p>Your health, our priority. Consult with top doctors from the comfort of your home.</p>
-          <button className="cta-button">Book an Appointment</button>
+          <button className="cta-button">Start Today</button>
         </section>
 
         <section id="services" className="services">
           <h2>Our Services</h2>
           <ul>
             <li>Virtual Consultations</li>
-            <li>Prescription Management</li>
+            <li>Online Reservations</li>
             <li>Health Checkups</li>
             <li>Mental Health Support</li>
           </ul>

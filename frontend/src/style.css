@@ -1,9 +1,19 @@
 /* General Styles */
+
+.noto-sans-notosans {
+    font-family: "Noto Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: "Noto Sans", Arial, sans-serif;
     min-width: 100%;
   }
   
@@ -81,6 +91,7 @@
     border: none;
     padding: 15px 30px;
     font-size: 1.1rem;
+    font-weight: bolder;
     cursor: pointer;
     color: white;
     text-transform: uppercase;
