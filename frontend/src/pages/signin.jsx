@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from "../components/header.jsx";
 import Footer from "../components/footer.jsx";
+import './signup.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
