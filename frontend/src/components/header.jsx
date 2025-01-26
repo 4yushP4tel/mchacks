@@ -12,9 +12,6 @@ function Header() {
 
             </div>
             <ul className="navbar">
-                <li>Our Mission</li>
-                <li>About Us </li>
-
                 <li>
                     <Link to={"/clinic_access"}>
                     <a>Access as CliniQ</a>
