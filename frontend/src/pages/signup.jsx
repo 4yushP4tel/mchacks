@@ -42,7 +42,7 @@ export default function Signup( {setStatus} ) {
     
             const stat = response.data.auth_status;
             setStatus(stat)
-            navigate("/")
+            navigate("/symptoms")
 
         } catch{
             alert("This user already exists");

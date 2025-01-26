@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Admitted.css";
+import Header from "../components/header";
 
 export function Admitted() {
   const initialState = [{ id: 1, symptom: "", level: "Mild" }];
@@ -22,13 +23,15 @@ export function Admitted() {
     setSymptoms(symptoms);
     console.log(symptoms);
 
-    
+
 
 
   };
 
   return (
+
     <div className="container">
+      <Header/>
       <h1>Symptom Checker</h1>
       <form onSubmit={handleSubmit} className="form-container">
         {symptoms.map((s) => (
@@ -65,6 +68,7 @@ export function Admitted() {
           <button
             type="button"
             onClick={handleAddSymptom}
+            className="add_symp_button"
           >
             Add Symptom
           </button>

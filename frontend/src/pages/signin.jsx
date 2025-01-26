@@ -35,7 +35,7 @@ export default function Signin({ setStatus }) {
             setStatus(stat)
 
 
-            navigate('/');
+            navigate('/symptoms');
 
         } catch (e) {
             alert("Incorrect username and password combo")
