@@ -46,7 +46,8 @@ export function Clinic() {
 
     try {
       await axios.delete(`/api/remove_active_patient/${patientId}`,{ withCredentials: true });
-      setRankedPatients((prev) => prev.filter((patient) => patient.id !== patientId)); // Update UI after dismissal
+      fetchPatients();
+      setRankedPatients((prev) => prev.filter((patient) => patient.id !== patientId));
     } catch (error) {
       console.error("Error dismissing patient:", error);
     }

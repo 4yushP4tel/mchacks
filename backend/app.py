@@ -43,33 +43,28 @@ content = "rank all the patients in order of importance to treat without stating
 email_password = os.getenv('email_password')
 
 def send_email(recipient_email):
-    msg = MIMEMultipart()
-
 
     body = """
     Hey there, a doctor is soon ready to see you. You could make your way to CliniQ in 45 minutes.
     Make your way to the reception and you will be directed to your designated room. Thank you for your patience.
     """
-    msg['From'] = "cliniq56@gmail.com"
-    msg['To'] = recipient_email
-    msg['Subject'] = "CliniQ: A doctor is ready to see you!"
-    msg.attach(MIMEText(body, 'plain'))
-
-    smtp_server = 'smtp.gmail.com'
-    smtp_port = 587
 
     try:
-        server = smtplib.SMTP(smtp_server, smtp_port)
+        msg = MIMEMultipart()
+        msg['From'] = "cliniq56@gmail.com"
+        msg['To'] = recipient_email
+        msg['Subject'] = "CliniQ: A doctor is ready to see you!"
+        msg.attach(MIMEText(body, 'plain'))
+        server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()  
-        server.login("cliniq56@gmail.com", email_password)
-
-        text = msg.as_string()
-        server.sendmail("cliniq56@gmail.com", recipient_email, text)
+        server.login("cliniq56@gmail.com", "grse hkqo hkrx ixdr")
+        server.send_message(msg)
+        
         print('Email sent successfully!')
+        server.quit()
     except Exception as e:
         print(f'Error: {e}')
-    finally:
-        server.quit()
+
 
 
 def get_openai_response(prompt):
