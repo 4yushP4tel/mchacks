@@ -1,39 +1,132 @@
-/* .admit_container {
+.admitted-container {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  padding: 8px;
+  min-width: 0;
+
 }
 
-.admit-form-container {
-  width: 800px;
-  background-color: white;
-  padding: 16px;
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-container {
+  background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  height: 81vh;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .admit-form-group {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-} */
-
-.button-group {
-  margin-top: 40px;
+  gap: 8px;
+  min-width: 0;
   justify-content: center;
-  gap: 16px;
-
 }
 
-.button-group button {
-  flex: 1;
-  margin-top: 20px;
-  width: 30%;
+label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.admit-button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.add_symp_button,
+button[type="submit"] {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add_symp_button {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.add_symp_button:hover {
+  background-color: #45a049;
+}
+
+button[type="submit"] {
+  background-color: #007BFF;
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.already_in {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 77vh;
+  gap: 15px;
+}
+
+.already_in p {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.already_in button {
+  padding: 12px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.already_in button:hover {
+  background-color: #0056b3;
 }

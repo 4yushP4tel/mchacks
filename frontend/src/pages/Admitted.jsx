@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Admitted.css";
 import Header from "../components/header";
+import Footer from "../components/footer";
 import axios from "axios";
 
 export function Admitted() {
@@ -56,9 +57,9 @@ export function Admitted() {
   };
 
   const already_in = (
-                  <div>
+                  <div className="already_in">
                     <p>You will be contacted once a doctor is available</p>
-                    <p>Please note that clients are being contacted in order of urgence.</p>
+                    <p>Please note that clients are being contacted in order of urgency.</p>
                     <p>We thank you for your patience</p>
                     <Link to={"/"}>
                     <button>Go to Home Page</button>
@@ -67,14 +68,14 @@ export function Admitted() {
 
   return (
 
-    <div className="container">
+    <div className="admitted-container">
       <Header />
       <h1>Symptom Checker</h1>
 
 
      {added? already_in : ( <form onSubmit={handleSubmit} className="form-container">
         {symptoms.map((s) => (
-          <div key={s.id} className="form-group">
+          <div key={s.id} className="admit-form-group">
             <div>
               <label htmlFor={`symptom-${s.id}`} >
                 Symptom
@@ -103,7 +104,7 @@ export function Admitted() {
             </div>
           </div>
         ))}
-              <div className="button-group">
+              <div className="admit-button-group">
         <button
           type="button"
           onClick={handleAddSymptom}
@@ -118,6 +119,7 @@ export function Admitted() {
         </button>
       </div>
       </form>)}
+      <Footer/>
     </div>
   );
 }

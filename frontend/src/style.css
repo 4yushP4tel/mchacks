@@ -59,10 +59,15 @@
     list-style-type: none;
   }
 
+
   .navbar a {
     color: black;
     text-decoration: none;
     font-weight: bolder;
+  }
+
+  .navbar a:hover {
+    transform: scale(1.5);
   }
 
   
@@ -261,15 +266,89 @@ a {
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
+  min-width: 0;
 }
 
-.about-list ul li {
+.about-list ul li Link{
   min-width: 0;
   width: 250px;
   font-size: 20px;
+  transition: transform 0.3s ease;
+  
+}
+
+.about-list ul li Link:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 #services p {
   font-size: 24px;
   padding: 60px;
+}
+
+/* Socials.css */
+.socials_container {
+  padding-top: 70px;
+  background-color: #f4f4f9;
+  height: 92vh;
+  text-align: center;
+
+}
+
+
+.socials_container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.socials_container li {
+  background-color: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.socials_container li:hover {
+  transform: translateY(-5px);
+}
+
+.socials_container a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #0073b1;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.socials_container a:hover {
+  text-decoration: underline;
+}
+
+.socials_container p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+  justify-content: center;
+}
+
+.socials_container footer {
+  padding: 20px;
+  text-align: center;
+  background-color: #333;
+  color: #fff;
+  margin-top: 20px;
+}
+
+/* Header styling */
+.socials_container header {
+  padding: 20px;
+  background-color: #0073b1;
+  color: #fff;
+  text-align: center;
 }

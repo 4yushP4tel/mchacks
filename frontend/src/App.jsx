@@ -4,7 +4,7 @@ import Signup from "./pages/signup.jsx";
 import Signin from "./pages/signin.jsx";
 import {ClinicSignIn} from "./pages/clinicSignIn.jsx"
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-// import "./style.css";
+import Socials from "./pages/socials.jsx";
 import { Clinic } from "./pages/clinic.jsx";
 import {Admitted} from "./pages/Admitted.jsx";
 import axios from 'axios';
@@ -31,6 +31,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={status? <Admitted/> :<Homepage/>}></Route>
+        <Route path="/socials" element={<Socials/>}></Route>
         <Route path="/symptoms" element = {<Admitted/>}></Route>
         <Route path="/clinic" element = {<Clinic/>}></Route>
         <Route path="/signup" element={<Signup setStatus={setStatus}/>}></Route>

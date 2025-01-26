@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style.css";
 
 function HomeBody() {
@@ -26,8 +26,10 @@ function HomeBody() {
             <h2>About Us</h2>
             <div className="about-list">
                 <ul>
-                    <li>GitHub</li>
+                    <li><a href="https://github.com/4yushP4tel/mchacks" target="_blank" class="link">GitHub</a></li>
+                    <Link to={"/socials"}>
                     <li>Socials</li>
+                    </Link>
                 </ul>
             </div>
         </section>

@@ -22,12 +22,14 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  min-width: 0;
 }
 
 .clinic_table {
   margin-top: 120px;
   width: 100%;
-  max-width: 500px;
+  max-width: 750px;
+  min-width: 0;
 }
 
 table {
@@ -68,6 +70,7 @@ button {
   transition: background 0.3s ease;
   width: 40%;
   max-width: 250px;
+  min-width: 0;
 }
 
 button:hover {
