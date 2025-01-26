@@ -10,6 +10,7 @@ export function Admitted({ averageTime }) {
   const [symptoms, setSymptoms] = useState(initialState);
   const[added, setAdded] = useState(false)
   const [avgtime, setAvgtime] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const check_added = async () => {
     const response = await axios.get("/api/check_added", { withCredentials: true})
@@ -55,12 +56,14 @@ export function Admitted({ averageTime }) {
       const response = await axios.post("/api/get_in_line", {
         "symptoms" : symptomString
       });
-
+      setLoading(true)
       console.log(response);
 
     } catch {
       alert("You are already in the Queue. You will be notified when the next available doctor is available. Note that patients will be picked in order of severity")
 
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -127,6 +130,7 @@ export function Admitted({ averageTime }) {
           Submit
         </button>
       </div>
+      {loading && <p className="loading-bounce">Loading patients...🧑‍⚕️</p>}
       </form>)}
       <Footer/>
     </div>

@@ -59,7 +59,8 @@ export function Clinic() {
       <Header />
 
       <div className="clinic_body">
-        <p>Average Waiting Time: {avgtime}</p>
+
+        {!loading && <p className="wait-time">Average Waiting Time: {avgtime}</p>}
 
         <div className="clinic_table">
 
