@@ -195,9 +195,7 @@ def get_in_line():
 @app.route("/create_queue", methods=["GET"])
 def create_queue():
     active_patients = Active_patients.query.all()
-
-
-    patient_list = [{"id": p.id, "name": p.patient_name, "symptoms": p.symptoms, "waiting_time": f"{str((datetime.now() - p.created_at).total_seconds())} seconds"} for p in active_patients]
+    patient_list = [{"id": p.patient_id, "name": p.patient_name, "email": p.email, "symptoms": p.symptoms, "waiting_time": f"{str((datetime.now() - p.created_at).total_seconds())} seconds"} for p in active_patients]
     
     patients_json = json.dumps(patient_list)
     prompt = f"Rank the following patients in order of importance to treat and do not explain why.Return the response in Json format. Also, give the waiting time in hours:min:second (no milliseconds) and just make it a string:  {patients_json}"
@@ -215,6 +213,23 @@ def create_queue():
         "ranked_patients": ranked_patients
     }), 200
 
+
+@app.route("/remove_active_patient/<int:patient_id>", methods=["DELETE"])
+def remove_active_patient(patient_id):
+    try:
+        active_patient = Active_patients.query.filter_by(patient_id=patient_id).first()
+
+        if not active_patient:
+            return jsonify({"error": "Patient not found in the active list"}), 404
+
+        # Delete the patient from the database
+        db.session.delete(active_patient)
+        db.session.commit()
+        return jsonify({"message": f"Patient with ID {patient_id} removed from the active list"}), 200
+
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"error": "Failed to remove patient"}), 500
 
 
 
