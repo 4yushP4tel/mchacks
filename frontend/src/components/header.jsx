@@ -12,7 +12,7 @@ function Header() {
 
             </div>
             <ul className="navbar">
-                <li>Services</li>
+                <li>Our Mission</li>
                 <li>About Us </li>
 
                 <li>
