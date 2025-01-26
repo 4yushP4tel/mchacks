@@ -60,6 +60,7 @@ export function Admitted() {
             </div>
           </div>
         ))}
+      </form>
         <div className="button-group">
           <button
             type="button"
@@ -73,7 +74,6 @@ export function Admitted() {
             Submit
           </button>
         </div>
-      </form>
     </div>
   );
 }
