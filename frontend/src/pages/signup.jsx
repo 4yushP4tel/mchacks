@@ -54,9 +54,13 @@ export default function Signup( {setStatus} ) {
 
     return (
         <>
-            <Header />
+            
             <div class="container">
-                <form onSubmit={signup}>
+                <Header />
+                <div className="formcontainer">
+                    
+                </div>
+                <form className="form1" onSubmit={signup}>
                     <div className="FullName">Enter your full name.</div>
                     <input
                         type="text"
@@ -92,6 +96,8 @@ export default function Signup( {setStatus} ) {
 
                     <div className="Age">Age</div>
                     <input
+                        class="agewidth"
+                        min={18}
                         type="number"
                         name="age"
                         id="age"
@@ -104,9 +110,8 @@ export default function Signup( {setStatus} ) {
 
                 <Link to = {"/signin"} className='signinlink'>Already have an account? Sign In</Link>
 
-                
+                <Footer />
             </div>
-            <Footer />
         </>
     );
 }

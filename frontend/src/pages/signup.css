@@ -1,14 +1,8 @@
-
-html {
-    height: 100vh;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Noto Sans", Arial, sans-serif;
-    min-width: 100%;
 }
 
 body {
@@ -23,18 +17,20 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin: 0px;
-    padding: 30px;
+    padding: 0px;
     background-color: white; 
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e0e0e0; 
+    
 }
 
 .container form {
     display: flex;
     flex-direction: column;
-    padding: 0px 20vw;
+    padding: 0px 40vw;
+    align-items: center;
 }
 
 label {
@@ -111,4 +107,9 @@ button:hover {
     button {
         padding: 10px;
     }
+}
+
+input[type="number"] {
+    margin-bottom: 20px;
+    padding: 10px;
 }
