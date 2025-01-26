@@ -231,13 +231,22 @@
     min-height: 100vh;
   }
 
-  .popup {
+  .popup, .signInContainer {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .popup form {
     margin-top: 30vh;
+}
+
+.signInContainer form {
+  margin-top: 30vh;
+}
+
+a {
+  text-align: center;
 }

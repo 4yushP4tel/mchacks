@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from "../components/header.jsx";
 import Footer from "../components/footer.jsx";
-import './signup.css';
+import '../style.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ export default function Signin({ setStatus }) {
     }
 
     return (
-        <>
+        <div className="app-container">
             <Header />
             <div className="signInContainer">
             <form onSubmit={handleSignIn}>
@@ -76,6 +76,6 @@ export default function Signin({ setStatus }) {
 
             <Footer />
             </div>
-        </>
+        </div>
     );
 }
