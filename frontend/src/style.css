@@ -156,6 +156,15 @@
     line-height: 1.8;
   }
   
+  .about-bg {
+    background-color: white;
+    margin-bottom: -10px;
+  }
+
+  .about-bg li{
+    font-size: 1.2rem;
+  }
+
   /* Footer */
   .footer {
     background-color: #333;
