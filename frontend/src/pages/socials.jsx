@@ -8,7 +8,7 @@ const Socials = () => {
         { name: 'Ayush Patel', linkedin: 'https://www.linkedin.com/in/ayush-patel-montreal/', descript: "I am a software engineering student who enjoys building projects which solve problems in other fields, such as medical and finance" },
         { name: 'David Preda', linkedin: 'https://www.linkedin.com/in/david-preda/',descript: "As a software engineering student, learning the ins and outs of web development is my passion" },
         { name: 'Jimmy Zhang', linkedin: 'https://www.linkedin.com/in/jmmyzhang/',descript: "Aspiring Software Developer with a passion for learning new programming languages and tools."},
-        { name: 'Isaiah Abella', linkedin: 'https://www.linkedin.com/in/isaiah-abella/',descript: "a"},
+        { name: 'Isaiah Abella', linkedin: 'https://www.linkedin.com/in/isaiah-abella/',descript: "Software Engineering student eager to learn and build interesting projects."},
     ];
 
     return (
