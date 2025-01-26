@@ -102,7 +102,7 @@ export default function Signup( {setStatus} ) {
                     <button type="submit">Sign Up</button>
                 </form>
 
-                <Link to = {"/signin"}>Already have an account? Sign In</Link>
+                <Link to = {"/signin"} className='signinlink'>Already have an account? Sign In</Link>
 
                 
             </div>
