@@ -31,11 +31,12 @@ export function ClinicSignIn({setClinic_access}) {
     }
 
     return (
+        <>
+        <Header />
         <div className="app-container">
-            <Header />
             <div className="popup">
                 <form onSubmit={handleaccess}>
-                    <div className="request">Enter acces key:</div>
+                    <div className="request">Enter access key:</div>
                     <input
                         type="text"
                         className="clinicAccess"
@@ -47,8 +48,10 @@ export function ClinicSignIn({setClinic_access}) {
                 </form>
 
             </div>
-            <Footer />
         </div>
-    )
+        <Footer />
+        </>
+        
+    );
 }
 
