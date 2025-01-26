@@ -6,6 +6,9 @@ from flask_session import Session
 import os
 from datetime import datetime
 import json
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 app = Flask(__name__)
 load_dotenv()
@@ -36,6 +39,38 @@ Session(app)
 
 client = OpenAI(api_key= openai_key)
 content = "rank all the patients in order of importance to treat without stating why, just give them in order."
+
+email_password = os.getenv('email_password')
+
+def send_email(recipient_email):
+    msg = MIMEMultipart()
+
+
+    body = """
+    Hey there, a doctor is soon ready to see you. You could make your way to CliniQ in 45 minutes.
+    Make your way to the reception and you will be directed to your designated room. Thank you for your patience.
+    """
+    msg['From'] = "cliniq56@gmail.com"
+    msg['To'] = recipient_email
+    msg['Subject'] = "CliniQ: A doctor is ready to see you!"
+    msg.attach(MIMEText(body, 'plain'))
+
+    smtp_server = 'smtp.gmail.com'
+    smtp_port = 587
+
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()  
+        server.login("cliniq56@gmail.com", email_password)
+
+        text = msg.as_string()
+        server.sendmail("cliniq56@gmail.com", recipient_email, text)
+        print('Email sent successfully!')
+    except Exception as e:
+        print(f'Error: {e}')
+    finally:
+        server.quit()
+
 
 def get_openai_response(prompt):
         completion = client.chat.completions.create(
@@ -216,12 +251,15 @@ def create_queue():
 @app.route("/remove_active_patient/<int:patient_id>", methods=["DELETE"])
 def remove_active_patient(patient_id):
     try:
+
         active_patient = Active_patients.query.filter_by(patient_id=patient_id).first()
 
         if not active_patient:
             return jsonify({"error": "Patient not found in the active list"}), 404
 
         # Delete the patient from the database
+        recipient_email = active_patient.email
+        send_email(recipient_email)
         db.session.delete(active_patient)
         db.session.commit()
         return jsonify({"message": f"Patient with ID {patient_id} removed from the active list"}), 200
