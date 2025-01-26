@@ -40,6 +40,7 @@ export default function Signin( {setStatus}) {
                 value={formData.password}
                 onChange={handleChange}
             />
+            <button type="submit">Login</button>
         </form>
         <Footer />
         </>
