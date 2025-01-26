@@ -46,8 +46,8 @@ export function ClinicSignIn({setClinic_access}) {
                     <button className="clinicAccessButton">Access</button>
                 </form>
 
+                <Footer />
             </div>
-            <Footer />
         </div>
     )
 }

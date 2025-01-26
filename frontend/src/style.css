@@ -230,7 +230,19 @@
     }
   }
   
+  .app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
 
   .popup {
-    padding: 77px 0px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;;
   }
+
+  .popup form {
+    margin-top: 30vh;
+}
