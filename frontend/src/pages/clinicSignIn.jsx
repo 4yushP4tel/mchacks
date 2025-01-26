@@ -50,7 +50,6 @@ export function ClinicSignIn({setClinic_access}) {
                 <Footer />
             </div>
         </div>
-        <Footer />
         </>
         
     );
