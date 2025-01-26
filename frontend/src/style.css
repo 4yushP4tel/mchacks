@@ -33,6 +33,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgb(211, 211, 211);
+    position: fixed;
   }
   
   .logo {
@@ -161,6 +162,8 @@
     color: white;
     text-align: center;
     padding: 20px;
+    position: fixed;
+    bottom: 0;
   }
   
   .footer p {
