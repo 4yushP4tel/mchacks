@@ -98,6 +98,7 @@ export default function Signup( {setStatus} ) {
                     <input
                         class="agewidth"
                         min={18}
+                        max={130}
                         type="number"
                         name="age"
                         id="age"
