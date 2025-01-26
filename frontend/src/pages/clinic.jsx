@@ -1,20 +1,10 @@
 import Header from "../components/header.jsx";
+import Footer from "../components/footer.jsx";
 import React from "react";
 import "./clinic.css"
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const tableStyle = {
-  width: "100%",
-}
-
-const divStyle = {
-  padding: "20px",
-  textAlign: "center",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-}
 
 
 export function Clinic() {
@@ -53,67 +43,66 @@ export function Clinic() {
     <>
       <Header />
 
-      <button
-        onClick={fetchPatients}
-        style={{
-          background: "blue",
-          color: "white",
-          border: "none",
-          padding: "10px 20px",
-          borderRadius: "5px",
-          cursor: "pointer",
-        }}
-      >
-        Refresh Patients
-      </button>
+      <div className="clinic_body">
 
-      <div style={divStyle}>
+        <div className="clinic_table">
 
-        {loading ? (<p className="loading-bounce">Loading patients...🧑‍⚕️</p>):
-        (<table style={tableStyle}>
-          <tr>
-            <th>Priority</th>
-            <th>Patient</th>
-            <th>Email</th>
-            <th>Symptoms</th>
-            <th>Wait Time</th>
-            <th>Action</th>
-          </tr>
-          <tbody>
-            {rankedPatients.length > 0 ? (
-              rankedPatients.map((patient, index) => (
-                <tr key={patient.id}>
-                  <td>{index + 1}</td>
-                  <td>{patient.name}</td>
-                  <td>{patient.email}</td>
-                  <td>{patient.symptoms}</td>
-                  <td>{patient.waiting_time}</td>
-                  <td>
-                    <button
-                      onClick={() => dismissPatient(patient.id)}
-                      style={{
-                        background: "red",
-                        color: "white",
-                        border: "none",
-                        padding: "5px 10px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      Dismiss
-                    </button>
+          {loading ? (<p className="loading-bounce">Loading patients...🧑‍⚕️</p>):
+          (<table>
+            <tr>
+              <th>Priority</th>
+              <th>Patient</th>
+              <th>Email</th>
+              <th>Symptoms</th>
+              <th>Wait Time</th>
+              <th>Action</th>
+            </tr>
+            <tbody>
+              {rankedPatients.length > 0 ? (
+                rankedPatients.map((patient, index) => (
+                  <tr key={patient.id}>
+                    <td>{index + 1}</td>
+                    <td>{patient.name}</td>
+                    <td>{patient.email}</td>
+                    <td>{patient.symptoms}</td>
+                    <td>{patient.waiting_time}</td>
+                    <td>
+                      <button
+                        onClick={() => dismissPatient(patient.id)}
+                        style={{
+                          background: "red",
+                          color: "white",
+                          border: "none",
+                          padding: "5px 10px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Dismiss
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" style={{ textAlign: "center" }}>
+                    No patients found
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="6" style={{ textAlign: "center" }}>
-                  No patients found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>)}
+              )}
+            </tbody>
+          </table>)}
+        </div>
+
+        <button
+          onClick={fetchPatients}
+        >
+          Refresh Patients
+        </button>
+
+
       </div>
+      
+      <Footer/>
     </>
   );
 }
