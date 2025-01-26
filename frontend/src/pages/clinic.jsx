@@ -10,9 +10,9 @@
 // }
 
 // export default Clinic;
-import Header from "./components/header";
+import Header from "../components/header.jsx";
 import React from "react";
-import "./Test.css"
+import "./clinic.css"
 import { useState, useEffect } from "react";
 
 const tableStyle = {
