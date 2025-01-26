@@ -3,8 +3,11 @@ import Header from "../components/header.jsx";
 import Footer from "../components/footer.jsx";
 import './signup.css';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Signup( {setStatus} ) {
+
+    const navigate = useNavigate();
     
     const [formData, setFormData] = useState({
         fullName: '',
@@ -34,7 +37,11 @@ export default function Signup( {setStatus} ) {
             age: formData.age
         }, {withCredentials: true})
 
-        console.log(response)
+        console.log(response.data)
+
+        const stat = response.data.auth_status;
+        setStatus(stat)
+        navigate("/")
         
     }
 
@@ -75,7 +82,7 @@ export default function Signup( {setStatus} ) {
 
                     <div className="Age">Age</div>
                     <input
-                        type="text"
+                        type="number"
                         name="age"
                         id="age"
                         value={formData.age}
@@ -83,6 +90,9 @@ export default function Signup( {setStatus} ) {
                     />
                     <button type="submit">Sign Up</button>
                 </form>
+
+                <Link to = {"/signin"}>Already have an account? Sign In</Link>
+
                 
             </div>
             <Footer />

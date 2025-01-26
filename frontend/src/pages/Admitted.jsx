@@ -73,8 +73,4 @@ export function Admitted() {
     </div>
   );
 }
-<<<<<<< HEAD
 
-export default Admitted;
-=======
->>>>>>> 49aef4be001f4e1d118f4aeca85187e574c79220
