@@ -49,7 +49,7 @@ export default function Signin({ setStatus }) {
             <Header />
             <div className="signInContainer">
             <form onSubmit={handleSignIn}>
-                <div className='Email'>Enter your email address.</div>
+                <div className='Email'>Email</div>
                 <input
                     type="email"
                     name="email"
@@ -59,12 +59,12 @@ export default function Signin({ setStatus }) {
                     onChange={handleChange}
                     required
                 />
-                <div className='Password'>Enter your password.</div>
+                <div className='Password'>Password</div>
                 <input
                     type="password"
                     name="password"
                     id="password"
-                    placeholder="password"
+                    placeholder="Password"
                     value={formData.password}
                     onChange={handleChange}
                     required

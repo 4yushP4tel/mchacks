@@ -61,7 +61,7 @@ export default function Signup( {setStatus} ) {
                     
                 </div>
                 <form className="form1" onSubmit={signup}>
-                    <div className="FullName">Enter your full name.</div>
+                    <div className="FullName">Full Name</div>
                     <input
                         type="text"
                         name="fullName"
@@ -72,7 +72,7 @@ export default function Signup( {setStatus} ) {
                         required
                     />
                     
-                    <div className="Email">Enter your email.</div>
+                    <div className="Email">Email</div>
                     <input
                         type="email"
                         name="email"
@@ -83,12 +83,12 @@ export default function Signup( {setStatus} ) {
                         required
                     />
 
-                    <div className="Password">Enter your password.</div>
+                    <div className="Password">Enter Password</div>
                     <input
                         type="password"
                         name="password"
                         id="password"
-                        placeholder="password"
+                        placeholder="Password"
                         value={formData.password}
                         onChange={handleChange}
                         required

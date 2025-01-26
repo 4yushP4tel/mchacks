@@ -26,10 +26,10 @@ function HomeBody() {
             <h2>About Us</h2>
             <div className="about-list">
                 <ul>
+                {/* <div className="about-list"> */}
                     <li><a href="https://github.com/4yushP4tel/mchacks" target="_blank" class="link">GitHub</a></li>
-                    <Link to={"/socials"}>
-                    <li>Socials</li>
-                    </Link>
+                    <li><Link to={"/socials"} className="link">Socials</Link></li>
+                {/* </div> */}
                 </ul>
             </div>
         </section>
