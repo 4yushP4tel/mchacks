@@ -20,17 +20,18 @@ export function Admitted() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(symptoms);
-    setSymptoms(symptoms);
+    const symptomString = symptoms
+      .map((s) => `${s.symptom} (${s.level}), `)
+      .join(", ");
 
-
+    console.log(symptomString)
 
   };
 
   return (
 
     <div className="container">
-      <Header/>
+      <Header />
       <h1>Symptom Checker</h1>
       <form onSubmit={handleSubmit} className="form-container">
         {symptoms.map((s) => (
@@ -63,21 +64,21 @@ export function Admitted() {
             </div>
           </div>
         ))}
+              <div className="button-group">
+        <button
+          type="button"
+          onClick={handleAddSymptom}
+          className="add_symp_button"
+        >
+          Add Symptom
+        </button>
+        <button
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
       </form>
-        <div className="button-group">
-          <button
-            type="button"
-            onClick={handleAddSymptom}
-            className="add_symp_button"
-          >
-            Add Symptom
-          </button>
-          <button
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
     </div>
   );
 }
