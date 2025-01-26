@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './signup.css';
+import axios from 'axios';
 
 export default function Signup( {setStatus} ) {
     
@@ -13,13 +14,25 @@ export default function Signup( {setStatus} ) {
     
     function handleChange(event) {
         const { name, value } = event.target;
-        setFormData({[name]: value});
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
     }
 
     
-    function signup(event) {
+    async function signup(event) {
         event.preventDefault();
         console.log("Form submitted", formData);
+
+        const response = await axios.post("/api/create_patient", {
+            patient_name: formData.fullName,
+            email: formData.email,
+            password: formData.password,
+            age: formData.age
+        }, {withCredentials: true})
+
+        console.log(response)
         
     }
 
@@ -58,7 +71,7 @@ export default function Signup( {setStatus} ) {
 
                 <div className="Age">Age</div>
                 <input
-                    type="text"
+                    type="number"
                     name="age"
                     id="age"
                     value={formData.age}
