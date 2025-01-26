@@ -90,7 +90,7 @@
     margin-bottom: 30px;
   }
   
-  .hero .cta-button {
+  .cta-button {
     background-color: #3694ff;
     border: none;
     padding: 15px 30px;
@@ -100,7 +100,6 @@
     color: white;
     text-transform: uppercase;
     border-radius: 5px;
-    outline: 2px solid red;
   }
   
   .cta-button:hover {
@@ -217,3 +216,4 @@
       grid-template-columns: 1fr;
     }
   }
+  

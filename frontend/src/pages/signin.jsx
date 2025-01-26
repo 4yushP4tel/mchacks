@@ -47,6 +47,7 @@ export default function Signin({ setStatus }) {
     return (
         <>
             <Header />
+            <div className="signInContainer">
             <form onSubmit={handleSignIn}>
                 <div className='Email'>Enter your email address.</div>
                 <input
@@ -74,6 +75,7 @@ export default function Signin({ setStatus }) {
             <Link to={"/signup"}>Don't have an account? Sign Up</Link>
 
             <Footer />
+            </div>
         </>
     );
 }

@@ -14,22 +14,22 @@ function HomeBody() {
 
         </section>
 
+
         <section id="services" className="services">
-            <h2>Our Services</h2>
-            <ul>
-                <li>Virtual Consultations</li>
-                <li>Online Reservations</li>
-                <li>Health Checkups</li>
-                <li>Mental Health Support</li>
-            </ul>
+            <h2>Our Mission</h2>
+            <p>
+            As a group of passionate students dedicated to the betterment of society, we aim to provide a platform for patients and hospitals alike to optimize the wait times for patients and the efficiency of hospitals. Our platform, CliniQ, is designed to help patients get the care they need in a timely manner, while also helping hospitals manage their patient queues effectively. We believe that everyone deserves access to quality healthcare, and we are committed to making that a reality.
+            </p>
         </section>
 
-        <section id="about" className="about-us">
+        <section id="about" className="services about-bg">
             <h2>About Us</h2>
-            <p>
-                We are a dedicated team of medical professionals bringing healthcare to your doorstep.
-                With advanced technology and personalized care, we make your health journey seamless.
-            </p>
+            <div className="about-list">
+            <ul>
+                <li>GitHub</li>
+                <li>Socials</li>
+            </ul>
+            </div>
         </section>
       </main>
     )
