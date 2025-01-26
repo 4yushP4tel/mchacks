@@ -29,7 +29,7 @@ body {
 form {
     display: flex;
     flex-direction: column;
-    padding: 0px 40vw;
+    padding: 0px 30vw;
     align-items: center;
 }
 
