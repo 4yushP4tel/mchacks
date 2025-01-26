@@ -235,6 +235,10 @@
     margin-top: 30vh;
 }
 
+Link:hover{
+  cursor: pointer;
+}
+
 .signInContainer form {
   margin-top: 30vh;
 }
