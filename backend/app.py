@@ -35,16 +35,16 @@ db = SQLAlchemy(app)
 Session(app)
 
 client = OpenAI(api_key= openai_key)
-content = "rank all the patients in order of importance to treat without stating why, just give them in order"
+content = "rank all the patients in order of importance to treat without stating why, just give them in order."
 
 def get_openai_response(prompt):
         completion = client.chat.completions.create(
             model= "gpt-4",
             messages= [
-                {"role": "system", "content": "You are a medical expert who will rank all the following in order of importance to treat. Do not give explanation on why. Also give the responses in JSON format"},
+                {"role": "system", "content": "You will rank all the following people in order of importance to treat. Do not give explanation on why. No matter what the person's symptoms are. Also give the responses in JSON format"},
                 {"role": "user", "content": prompt}
             ],
-            temperature = 0.05
+            temperature = 0.005
         )
         return completion.choices[0].message.content
 
@@ -79,7 +79,6 @@ def check_auth():
         return jsonify({
             "authorization": False
         })
-
 
 
 @app.route('/create_patient', methods = ["POST"])
@@ -230,6 +229,18 @@ def remove_active_patient(patient_id):
     except Exception as e:
         print(f"Error: {e}")
         return jsonify({"error": "Failed to remove patient"}), 500
+    
+@app.route("/check_added", methods = ["GET"])
+def check_added():
+    
+    if Active_patients.query.filter_by(patient_id=session['patient_id']).first():
+        return jsonify({
+            "added": True
+        })
+    else:
+        return jsonify({
+            "added": False
+        })
 
 
 
