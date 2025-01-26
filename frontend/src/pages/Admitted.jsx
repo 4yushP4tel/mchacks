@@ -20,9 +20,8 @@ export function Admitted() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSymptoms(symptoms);
     console.log(symptoms);
-
+    setSymptoms(symptoms);
 
 
 
@@ -44,6 +43,7 @@ export function Admitted() {
                 type="text"
                 id={`symptom-${s.id}`}
                 value={s.symptom}
+                required
                 onChange={(e) => handleSymptomChange(s.id, e.target.value)}
               />
             </div>

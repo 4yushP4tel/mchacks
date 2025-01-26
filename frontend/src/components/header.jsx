@@ -17,7 +17,7 @@ function Header() {
 
                 <li>
                     <Link to={"/clinic_access"}>
-                    <a>Access as clinic</a>
+                    <a>Access as CliniQ</a>
                     </Link>
                 </li>
             </ul>     

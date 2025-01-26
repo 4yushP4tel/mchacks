@@ -37,12 +37,15 @@ client = OpenAI(api_key= openai_key)
 content = "rank all the patients in order of importance to treat without stating why, just give them in order"
 
 def get_openai_response(prompt):
-    completion = client.chat.completions.create(
-        model= "gpt-4o",
-        messages= [{"role": "system", "content": content }],
-        temperature = 0.05
-    )
-    return completion.choices[0].message.content
+        completion = client.chat.completions.create(
+            model= "gpt-4o",
+            messages= [
+                {"role": "system", "content": "You are a medical expert who will rank all the following in order of importance to treat. Do not give explanation on why. Also give the responses in JSON format"},
+                {"role": "user", "content": prompt}
+            ],
+            temperature = 0.05
+        )
+        return completion.choices[0].message.content
 
 class Patient(db.Model):
     __tablename__ = "patients"
@@ -58,7 +61,7 @@ class Patient(db.Model):
 class Active_patients(db.Model):
     __tablename__ = "active_patients"
     id = db.Column(db.Integer, primary_key=True)
-    patient_id = db.column(db.Integer, db.ForeignKey("patients.id"))
+    patient_id = db.Column(db.Integer, db.ForeignKey("patients.id"))
     patient_name = db.Column(db.String(255), unique = True, nullable = False)
     symptoms = db.Column(db.String(1000), nullable = False)
     email = db.Column(db.String(255), unique = True, nullable = False)
@@ -66,7 +69,7 @@ class Active_patients(db.Model):
 
 @app.route('/check_auth', methods = ["GET"])
 def check_auth():
-    if 'user_id' in session:
+    if 'patient_id' in session:
         return jsonify({
             "authorization": True
         })
@@ -98,6 +101,9 @@ def create_patient():
         db.session.add(patient)
         db.session.commit()
         session['auth_status'] = True
+        session['patient_id'] = patient.id
+        session['patient_name'] = patient.patient_name
+        session['email'] = patient.email
 
         return jsonify({
             "message": "patient_created",
@@ -120,11 +126,14 @@ def login():
     patient = Patient.query.filter_by(email=email).first()
     if patient and password == patient.password:
         session['patient_id'] = patient.id
+        session['patient_name'] = patient.patient_name
+        session['email'] = patient.email
         session['auth_status'] = True
         print(f"session data: {session}")
         return jsonify({"message": "Logged in successfully",
-                        "user_id": session['patient_id'],
-                        "auth_status": session['auth_status']
+                        "patient_id": session['patient_id'],
+                        "auth_status": session['auth_status'],
+                        "patient_name": session['patient_name']
                         }), 200
     else:
         return jsonify({"error": "Invalid email or password"}), 401
@@ -144,7 +153,34 @@ def clinic_access():
             "access_grant" : False
         }), 401
     
+@app.route("/get_in_line", methods=["POST"])
+def get_in_line():
+    data = request.get_json()
+    patient_id = session['patient_id']
+    patient_name = session['patient_name']
+    email = session['email']
+    symptoms = data.get('symptoms')
 
+    active_patient = Active_patients(
+        patient_id=patient_id,
+        patient_name=patient_name,
+        symptoms=symptoms,
+        email=email,
+        created_at=datetime.now()
+    )
+
+    try:
+        db.session.add(active_patient)
+        db.session.commit()
+        return jsonify({
+            "message": "Patient added to active list"
+        })
+
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "message": "Failed to add patient to active patients"
+        })
 
 
 
