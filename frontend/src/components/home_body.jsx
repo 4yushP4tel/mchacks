@@ -26,8 +26,8 @@ function HomeBody() {
         <section id="about" className="services about-bg">
             <h2>About Us</h2>
             <ul>
-                <li>Virtual Consultations</li>
-                <li>Online Reservations</li>
+                <li>GitHub</li>
+                <li>Socials</li>
             </ul>
         </section>
       </main>
