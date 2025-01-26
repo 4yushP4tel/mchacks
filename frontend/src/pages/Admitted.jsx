@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Admitted.css";
 import Header from "../components/header";
+import axios from "axios";
 
 export function Admitted() {
   const initialState = [{ id: 1, symptom: "", level: "Mild" }];
@@ -18,13 +19,27 @@ export function Admitted() {
     setSymptoms(symptoms.map((s) => (s.id === id ? { ...s, level: value } : s)));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const symptomString = symptoms
       .map((s) => `${s.symptom} (${s.level}), `)
       .join(", ");
 
     console.log(symptomString)
+
+    try{
+      const response = await axios.post("/api/get_in_line", {
+        "symptoms" : symptomString
+      });
+
+      console.log(response);
+
+    } catch {
+      alert("You are already in the Queue. You will be notified when the next available doctor is available. Note that patients will be picked in order of severity")
+
+    }
+
+
 
   };
 

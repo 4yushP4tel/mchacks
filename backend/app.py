@@ -161,6 +161,13 @@ def get_in_line():
     email = session['email']
     symptoms = data.get('symptoms')
 
+    existing_active_patient = Active_patients.query.filter_by(patient_id=patient_id).first()
+
+    if existing_active_patient:
+        return jsonify({
+            "error": "Patient is already in the active list"
+        }), 401
+
     active_patient = Active_patients(
         patient_id=patient_id,
         patient_name=patient_name,
@@ -174,13 +181,13 @@ def get_in_line():
         db.session.commit()
         return jsonify({
             "message": "Patient added to active list"
-        })
+        }), 200
 
     except Exception as e:
         print(e)
         return jsonify({
             "message": "Failed to add patient to active patients"
-        })
+        }), 401
 
 
 
