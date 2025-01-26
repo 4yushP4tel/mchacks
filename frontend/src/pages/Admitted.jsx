@@ -38,9 +38,6 @@ export function Admitted() {
       alert("You are already in the Queue. You will be notified when the next available doctor is available. Note that patients will be picked in order of severity")
 
     }
-
-
-
   };
 
   return (

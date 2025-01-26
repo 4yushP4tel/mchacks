@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from flask_session import Session
 import os
 from datetime import datetime
+import json
 
 app = Flask(__name__)
 load_dotenv()
@@ -38,7 +39,7 @@ content = "rank all the patients in order of importance to treat without stating
 
 def get_openai_response(prompt):
         completion = client.chat.completions.create(
-            model= "gpt-4o",
+            model= "gpt-4",
             messages= [
                 {"role": "system", "content": "You are a medical expert who will rank all the following in order of importance to treat. Do not give explanation on why. Also give the responses in JSON format"},
                 {"role": "user", "content": prompt}
@@ -104,6 +105,7 @@ def create_patient():
         session['patient_id'] = patient.id
         session['patient_name'] = patient.patient_name
         session['email'] = patient.email
+        session['created_at'] = patient.created_at
 
         return jsonify({
             "message": "patient_created",
@@ -129,6 +131,7 @@ def login():
         session['patient_name'] = patient.patient_name
         session['email'] = patient.email
         session['auth_status'] = True
+        session['created_at'] = patient.created_at
         print(f"session data: {session}")
         return jsonify({"message": "Logged in successfully",
                         "patient_id": session['patient_id'],
@@ -188,6 +191,31 @@ def get_in_line():
         return jsonify({
             "message": "Failed to add patient to active patients"
         }), 401
+
+@app.route("/create_queue", methods=["GET"])
+def create_queue():
+    active_patients = Active_patients.query.all()
+
+
+    patient_list = [{"id": p.id, "name": p.patient_name, "symptoms": p.symptoms, "waiting_time": f"{str((datetime.now() - p.created_at).total_seconds())} seconds"} for p in active_patients]
+    
+    patients_json = json.dumps(patient_list)
+    prompt = f"Rank the following patients in order of importance to treat and do not explain why.Return the response in Json format. Also, give the waiting time in hours:min:second (no milliseconds) and just make it a string:  {patients_json}"
+
+    try:
+        openai_response = get_openai_response(prompt)
+        ranked_patients = json.loads(openai_response)
+    except Exception as e:
+        return jsonify({
+            "error" : f"openai error, {e}",
+            "prompt": prompt
+            }), 401
+
+    return jsonify({
+        "ranked_patients": ranked_patients
+    }), 200
+
+
 
 
 
