@@ -14,22 +14,21 @@ function HomeBody() {
 
         </section>
 
-        <section id="services" className="services">
-            <h2>Our Services</h2>
-            <ul>
-                <li>Virtual Consultations</li>
-                <li>Online Reservations</li>
-                <li>Health Checkups</li>
-                <li>Mental Health Support</li>
-            </ul>
-        </section>
 
-        <section id="about" className="about-us">
-            <h2>About Us</h2>
+        <section id="services" className="services">
+            <h2>Our Mission</h2>
             <p>
                 We are a dedicated team of medical professionals bringing healthcare to your doorstep.
                 With advanced technology and personalized care, we make your health journey seamless.
             </p>
+        </section>
+
+        <section id="about" className="services about-bg">
+            <h2>About Us</h2>
+            <ul>
+                <li>Virtual Consultations</li>
+                <li>Online Reservations</li>
+            </ul>
         </section>
       </main>
     )
