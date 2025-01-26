@@ -10,18 +10,27 @@ import axios from "axios";
 export function Clinic() {
   const [rankedPatients, setRankedPatients] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [avgtime, setAvgtime] = useState("")
+
+  const avg_time = async () => {
+    const response = await axios.get("/api/average_wait_time", {withCredentials:true})
+    const avrg_time = response.data.average_wait_time;
+    console.log(avrg_time)
+    setAvgtime(avrg_time)
+  }
 
   useEffect(() => {
     fetchPatients();
+    avg_time();
   }, []);
 
   const fetchPatients = async () => {
     setLoading(true)
     try {
-      const response = await axios.get("/api/create_queue", {withCredentials:true}); // Replace with your API endpoint
-      console.log(response.data.ranked_patients.patients)
-      const patients = response.data?.ranked_patients?.patients || [];  // Safely access patients array
-      setRankedPatients(patients);
+      const response = await axios.get("/api/create_queue", {withCredentials:true}); 
+      console.log(response.data.ranked_patients)
+      const patients = response.data?.ranked_patients || [];  
+      setRankedPatients(patients);      
     } catch (error) {
       console.error("Error fetching patient data:", error);
     } finally{
@@ -30,6 +39,11 @@ export function Clinic() {
   };
 
   const dismissPatient = async (patientId) => {
+    const confirmDismissal = window.confirm("Are you sure you want to dismiss this patient?");
+    if(!confirmDismissal){
+      return;
+    }
+
     try {
       await axios.delete(`/api/remove_active_patient/${patientId}`,{ withCredentials: true });
       setRankedPatients((prev) => prev.filter((patient) => patient.id !== patientId)); // Update UI after dismissal
@@ -44,6 +58,7 @@ export function Clinic() {
       <Header />
 
       <div className="clinic_body">
+        <p>Average Waiting Time: {avgtime}</p>
 
         <div className="clinic_table">
 
@@ -72,8 +87,6 @@ export function Clinic() {
                         style={{
                           background: "red",
                           color: "white",
-                          border: "none",
-                          padding: "5px 10px",
                           cursor: "pointer",
                         }}
                       >

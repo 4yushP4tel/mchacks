@@ -28,7 +28,7 @@ body {
 .clinic_table {
   margin-top: 120px;
   width: 100%;
-  max-width: 750px;
+  max-width: 900px;
   min-width: 0;
 }
 
@@ -43,6 +43,7 @@ th, td {
   text-align: center;
   border: 1px solid #ddd;
   vertical-align: middle;
+  min-width: 100px;
 }
 
 th {
@@ -68,7 +69,6 @@ button {
   background-color: #007bff;
   color: white;
   transition: background 0.3s ease;
-  width: 40%;
   max-width: 250px;
   min-width: 0;
 }
@@ -115,7 +115,7 @@ td[colspan] {
   }
 
   button {
-    font-size: 14px;
+    font-size: 10px;
     padding: 10px 15px;
   }
 }

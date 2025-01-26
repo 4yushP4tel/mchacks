@@ -229,10 +229,16 @@ def get_in_line():
 @app.route("/create_queue", methods=["GET"])
 def create_queue():
     active_patients = Active_patients.query.all()
-    patient_list = [{"id": p.patient_id, "name": p.patient_name, "email": p.email, "symptoms": p.symptoms, "waiting_time": f"{str((datetime.now() - p.created_at).total_seconds())} seconds"} for p in active_patients]
+    
+    patient_list = [{"id": p.patient_id,
+                    "name": p.patient_name,
+                    "email": p.email,
+                    "symptoms": p.symptoms,
+                    "waiting_time": f"{(lambda delta: f'{int(delta.total_seconds() // 3600):02}:{int((delta.total_seconds() % 3600) // 60):02}:{int(delta.total_seconds() % 60):02}')((datetime.now() - p.created_at))}"
+                    } for p in active_patients]
     
     patients_json = json.dumps(patient_list)
-    prompt = f"Rank the following patients in order of importance to treat and do not explain why.Return the response in Json format. Also, give the waiting time in hours:min:second (no milliseconds) and just make it a string:  {patients_json}"
+    prompt = f"Rank the following patients in order of importance to treat and do not explain why.Return time in the format hh:mm:ss. Return the response in Json format:  {patients_json}"
 
     try:
         openai_response = get_openai_response(prompt)
@@ -247,6 +253,22 @@ def create_queue():
         "ranked_patients": ranked_patients
     }), 200
 
+@app.route("/average_wait_time", methods = ["GET"])
+def average_wait_time():
+    active_patients = Active_patients.query.all()
+    waiting_times = [
+            (datetime.now() - patient.created_at).total_seconds()
+            for patient in active_patients]
+    total_wait_time = sum(waiting_times)
+    average_wait_seconds = total_wait_time / len(waiting_times)
+
+        # Convert average wait time to hh:mm:ss
+    hours = int(average_wait_seconds // 3600)
+    minutes = int((average_wait_seconds % 3600) // 60)
+    seconds = int(average_wait_seconds % 60)
+    average_wait_time = f"{hours:02}:{minutes:02}:{seconds:02}"
+
+    return jsonify({"average_wait_time": average_wait_time}), 200
 
 @app.route("/remove_active_patient/<int:patient_id>", methods=["DELETE"])
 def remove_active_patient(patient_id):

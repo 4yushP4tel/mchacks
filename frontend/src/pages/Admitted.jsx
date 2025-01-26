@@ -5,10 +5,11 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import axios from "axios";
 
-export function Admitted() {
+export function Admitted({ averageTime }) {
   const initialState = [{ id: 1, symptom: "", level: "Mild" }];
   const [symptoms, setSymptoms] = useState(initialState);
   const[added, setAdded] = useState(false)
+  const [avgtime, setAvgtime] = useState("")
 
   const check_added = async () => {
     const response = await axios.get("/api/check_added", { withCredentials: true})
@@ -16,10 +17,17 @@ export function Admitted() {
     setAdded(stat)
   }
 
+  const avg_time = async () => {
+    const response = await axios.get("/api/average_wait_time", {withCredentials:true})
+    const avrg_time = response.data.average_wait_time;
+    console.log(avrg_time)
+    setAvgtime(avrg_time)
+  }
+
   useEffect(() => {
     check_added();
-
-    const interval = setInterval(check_added, 5000); 
+    avg_time();
+    const interval = setInterval(check_added, 10000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -61,6 +69,7 @@ export function Admitted() {
                     <p>You will be contacted once a doctor is available</p>
                     <p>Please note that clients are being contacted in order of urgency.</p>
                     <p>We thank you for your patience</p>
+                    <p>Average waiting time for current patients: {avgtime}</p>
                     <Link to={"/"}>
                     <button>Go to Home Page</button>
                     </Link>

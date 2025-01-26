@@ -12,6 +12,8 @@ import axios from 'axios';
 function App() {
   const [clinic_access, setClinic_access] = useState(false)
   const [status, setStatus] = useState(null)
+  const [averageTime, setAverageTime] = useState("");
+
 
   useEffect(() => {
     const checkAuthStatus = async () => {
@@ -30,10 +32,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={status? <Admitted/> :<Homepage/>}></Route>
+        <Route path="/" element={status? <Admitted averageTime={averageTime}/> :<Homepage/>}></Route>
+
         <Route path="/socials" element={<Socials/>}></Route>
-        <Route path="/symptoms" element = {<Admitted/>}></Route>
-        <Route path="/clinic" element = {<Clinic/>}></Route>
+        <Route path="/symptoms" element = {<Admitted setStatus={setStatus} averageTime={averageTime}/>}></Route>
+        <Route path="/clinic" element = {<Clinic averageTime = {averageTime} setAverageTime={setAverageTime}/>}></Route>
         <Route path="/signup" element={<Signup setStatus={setStatus}/>}></Route>
         <Route path="/signin" element={<Signin setStatus={setStatus}/>}></Route>
         <Route path="/clinic_access" element={clinic_access? <Clinic/>:<ClinicSignIn setClinic_access = {setClinic_access}/>}></Route>
