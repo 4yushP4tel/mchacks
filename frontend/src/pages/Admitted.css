@@ -6,12 +6,15 @@
 }
 
 .form-container {
-  width: 100%;
-  max-width: 600px;
+  width: 800px;
   background-color: white;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .form-group {
@@ -33,10 +36,10 @@
 
 .button-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
 }
 
-.button-group button {
+/* .button-group button {
   flex: 1;
-}
+} */
