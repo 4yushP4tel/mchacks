@@ -25,10 +25,10 @@ function HomeBody() {
         <section id="about" className="services about-bg">
             <h2>About Us</h2>
             <div className="about-list">
-            <ul>
-                <li>GitHub</li>
-                <li>Socials</li>
-            </ul>
+                <ul>
+                    <li>GitHub</li>
+                    <li>Socials</li>
+                </ul>
             </div>
         </section>
       </main>

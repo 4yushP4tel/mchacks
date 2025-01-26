@@ -198,8 +198,9 @@
       font-size: 2.5rem;
     }
   
-    .cta-button {
+    .hero .cta-button {
       padding: 12px 25px;
+      min-width: 0;
     }
   }
   
@@ -245,4 +246,28 @@ Link:hover{
 
 a {
   text-align: center;
+}
+
+#about {
+  width: 100%;
+  background-color: white;
+}
+
+.about-list ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.about-list ul li {
+  min-width: 0;
+  width: 250px;
+  font-size: 20px;
+}
+
+#services p {
+  font-size: 24px;
+  padding: 60px;
 }
