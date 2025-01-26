@@ -19,8 +19,12 @@ export function Admitted() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted Symptoms:", symptoms);
-    setSymptoms(initialState);
+    setSymptoms(symptoms);
+    console.log(symptoms);
+
+    
+
+
   };
 
   return (

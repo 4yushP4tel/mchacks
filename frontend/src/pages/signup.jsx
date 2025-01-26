@@ -30,18 +30,25 @@ export default function Signup( {setStatus} ) {
         event.preventDefault();
         console.log("Form submitted", formData);
 
-        const response = await axios.post("/api/create_patient", {
-            patient_name: formData.fullName,
-            email: formData.email,
-            password: formData.password,
-            age: formData.age
-        }, {withCredentials: true})
+        try{
+            const response = await axios.post("/api/create_patient", {
+                patient_name: formData.fullName,
+                email: formData.email,
+                password: formData.password,
+                age: formData.age
+            }, {withCredentials: true})
+    
+            console.log(response.data)
+    
+            const stat = response.data.auth_status;
+            setStatus(stat)
+            navigate("/")
 
-        console.log(response.data)
+        } catch{
+            alert("This user already exists");
+        }
 
-        const stat = response.data.auth_status;
-        setStatus(stat)
-        navigate("/")
+
         
     }
 
@@ -58,6 +65,7 @@ export default function Signup( {setStatus} ) {
                         placeholder="Full Name"
                         value={formData.fullName}
                         onChange={handleChange}
+                        required
                     />
                     
                     <div className="Email">Enter your email.</div>
@@ -68,6 +76,7 @@ export default function Signup( {setStatus} ) {
                         placeholder="youremail@email.com"
                         value={formData.email}
                         onChange={handleChange}
+                        required
                     />
 
                     <div className="Password">Enter your password.</div>
@@ -78,6 +87,7 @@ export default function Signup( {setStatus} ) {
                         placeholder="password"
                         value={formData.password}
                         onChange={handleChange}
+                        required
                     />
 
                     <div className="Age">Age</div>
@@ -87,6 +97,7 @@ export default function Signup( {setStatus} ) {
                         id="age"
                         value={formData.age}
                         onChange={handleChange}
+                        required
                     />
                     <button type="submit">Sign Up</button>
                 </form>

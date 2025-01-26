@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 function Header() {
     return (
         <div className="header">
-            <div className="logo">CliniQ</div>
+            <div className="logo">
+                <Link to={"/"} style={{ textDecoration: "none", color: "black"}}>
+                    CliniQ
+                </Link>
+
+            </div>
             <ul className="navbar">
                 <li>Services</li>
                 <li>About Us </li>
