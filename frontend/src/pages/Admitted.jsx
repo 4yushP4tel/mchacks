@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Admitted.css";
 import Header from "../components/header";
 import axios from "axios";
@@ -6,6 +7,20 @@ import axios from "axios";
 export function Admitted() {
   const initialState = [{ id: 1, symptom: "", level: "Mild" }];
   const [symptoms, setSymptoms] = useState(initialState);
+  const[added, setAdded] = useState(false)
+
+  const check_added = async () => {
+    const response = await axios.get("/api/check_added", { withCredentials: true})
+    const stat = response.data.added
+    setAdded(stat)
+  }
+
+  useEffect(() => {
+    check_added();
+
+    const interval = setInterval(check_added, 5000); 
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAddSymptom = () => {
     setSymptoms([...symptoms, { id: symptoms.length + 1, symptom: "", level: "Mild" }]);
@@ -40,12 +55,24 @@ export function Admitted() {
     }
   };
 
+  const already_in = (
+                  <div>
+                    <p>You will be contacted once a doctor is available</p>
+                    <p>Please note that clients are being contacted in order of urgence.</p>
+                    <p>We thank you for your patience</p>
+                    <Link to={"/"}>
+                    <button>Go to Home Page</button>
+                    </Link>
+                  </div>)
+
   return (
 
     <div className="container">
       <Header />
       <h1>Symptom Checker</h1>
-      <form onSubmit={handleSubmit} className="form-container">
+
+
+     {added? already_in : ( <form onSubmit={handleSubmit} className="form-container">
         {symptoms.map((s) => (
           <div key={s.id} className="form-group">
             <div>
@@ -90,7 +117,7 @@ export function Admitted() {
           Submit
         </button>
       </div>
-      </form>
+      </form>)}
     </div>
   );
 }
