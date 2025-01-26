@@ -32,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={status? <Admitted/> :<Homepage/>}></Route>
         <Route path="/symptoms" element = {<Admitted/>}></Route>
+        <Route path="/clinic" element = {<Clinic/>}></Route>
         <Route path="/signup" element={<Signup setStatus={setStatus}/>}></Route>
         <Route path="/signin" element={<Signin setStatus={setStatus}/>}></Route>
         <Route path="/clinic_access" element={clinic_access? <Clinic/>:<ClinicSignIn setClinic_access = {setClinic_access}/>}></Route>
