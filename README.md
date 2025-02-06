@@ -7,3 +7,5 @@ are able to receive the patient information and the app automatically prioritize
 them in terms of severity of symptoms and wait time. When they are ready to receive 
 them, they can send out emails with the push of a button that let's the patient know
 they will have a spot open for them soon and they should make their way to the clinic.
+
+Here's the devpost: https://devpost.com/software/cliniq-c702a8?ref_content=my-projects-tab&ref_feature=my_projects
